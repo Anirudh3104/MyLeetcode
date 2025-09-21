@@ -4,17 +4,17 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        import heapq
-        product=1
-        max_heap=[-x for x in nums]
-        heapq.heapify(max_heap)
-        heapq.heapify(nums)
-        max1=-heapq.heappop(max_heap)
-        max2=-heapq.heappop(max_heap)
-        max3=-heapq.heappop(max_heap)
-        min1=heapq.heappop(nums)
-        min2=heapq.heappop(nums)
-        product=max(max1*max2*max3,min1*min2*max1)
-        return product
-
-        
+        max1,max2,max3=float('-inf'),float('-inf'),float('-inf')
+        min1,min2=float('inf'),float('inf')
+        for x in nums:
+            if x>max1:
+                max1,max2,max3=x,max1,max2
+            elif x>max2:
+                max2,max3=x,max2
+            elif x>max3:
+                max3=x
+            if x<min1:
+                min1,min2=x,min1
+            elif x<min2:
+                min2=x
+        return max(min1*min2*max1,max1*max2*max3)
