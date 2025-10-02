@@ -25,11 +25,6 @@ class Solution:
         x=int(x)
         if x>maxx:return maxx
         if x<minn:return minn
-        return x
-            
-        
-
-
-                
+        return x      
 
         
